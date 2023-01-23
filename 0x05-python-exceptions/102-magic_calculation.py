@@ -2,7 +2,6 @@
 # 102-magic_calculation.py
 # Onyedinma Onyekachi <onyedinmaonyekachi@gmail.com>
 
-
 def magic_calculation(a, b):
     """
     This function performs a calculation using the values of a and b.
@@ -23,4 +22,10 @@ def magic_calculation(a, b):
             result += a + b
     # Return the final result
     return result
+
+if __name__ == "__main__":
+    import sys
+    magic_calculation(int(sys.argv[1]), int(sys.argv[2]))
+
+
 
