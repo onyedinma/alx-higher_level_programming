@@ -1,1 +1,1 @@
-0x0C. Python - Almost a circle
+Program name: 0x0C. Python - Almost a circle
