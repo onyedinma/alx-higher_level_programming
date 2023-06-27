@@ -1,16 +1,17 @@
 #!/usr/bin/node
 
 const argv = process.argv;
-function facto (a) {
+
+function factorial (a) {
   let factorial = 1;
   if (argv[2] === undefined) {
-    console.log(1);
+    return 1;
   } else {
     for (let i = Number(a); i > 1; i--) {
-      factorial = factorial * i;
+      factorial *= i;
     }
-    console.log(factorial);
+    return factorial;
   }
 }
 
-facto(argv[2]);
+console.log(factorial(argv[2]));
