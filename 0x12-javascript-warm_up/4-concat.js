@@ -1,3 +1,4 @@
+#!/usr/bin/node
 const { argv } = require('process');
 
 // Getting the second and third command-line arguments.

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 
 // Import the `process` module.
 const { argv } = require('process');
