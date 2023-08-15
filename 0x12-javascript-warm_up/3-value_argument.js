@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 
 // This script prints the first command line argument, or 'No argument' if none is provided.
 
