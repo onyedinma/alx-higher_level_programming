@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const { argv } = require('process');
-const file = require('file');
+const file = require('fs');
 let content = '';
 
 // Read the content of the first file specified as a command-line argument
