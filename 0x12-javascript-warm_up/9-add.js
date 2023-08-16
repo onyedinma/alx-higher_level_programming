@@ -1,6 +1,15 @@
 #!/usr/bin/node
-function add (a, b) {
+
+const {argv} = require('process');
+
+// This script adds two numbers passed as command line arguments and prints the result.
+
+function add(a, b) {
   return a + b;
 }
 
-console.log(add(Number(process.argv[2]), Number(process.argv[3])));
+const firstNumber = Number(argv[2]);
+const secondNumber = Number(argv[3]);
+const sum = add(firstNumber, secondNumber);
+console.log(sum);
+

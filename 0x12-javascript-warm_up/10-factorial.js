@@ -1,6 +1,12 @@
 #!/usr/bin/node
-function factorial (n) {
-  return n === 0 || isNaN(n) ? 1 : n * factorial(n - 1);
+const {argv} = require('process');
+// This script adds two numbers passed as command line arguments and prints the result.
+
+function add(a, b) {
+  return a + b;
 }
 
-console.log(factorial(Number(process.argv[2])));
+const firstNumber = Number(argv[2]);
+const secondNumber = Number(argv[3]);
+const sum = add(firstNumber, secondNumber);
+console.log(sum);
