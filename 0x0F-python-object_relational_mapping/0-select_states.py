@@ -3,15 +3,14 @@
 import MySQLdb
 import sys
 
-def listStates(username, password, database):
+def list_states(username, password, database):
     # Connecting to MySQL server
     connection = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
 
     # Creating a cursor object to execute SQL queries
     cursor = connection.cursor()
 
-    # creating SQL query to  retrieve all states
-
+    # Creating SQL query to retrieve all states
     query = "SELECT * FROM states ORDER BY id ASC"
 
     # Executing the SQL query to retrieve all states
@@ -36,4 +35,5 @@ if __name__ == "__main__":
     database = sys.argv[3]
 
     # Call the function to list states
-    listStates(username, password, database)
+    list_states(username, password, database)
+
