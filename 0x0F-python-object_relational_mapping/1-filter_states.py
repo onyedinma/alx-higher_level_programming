@@ -2,29 +2,34 @@
 """
 Script that lists all states
 with name starting with 'N' from database hbtn_0e_0_usa
-Usage: ./0-select_states.py <mysql username> <mysql password> <database name>
+Usage: ./1-filter_states.py <mysql username> <mysql password> <database name>
 """
 import MySQLdb
 import sys
 
-if len(sys.argv) == 4:
+def filter_states(username, password, database):
     conn = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3],
+        user=username,
+        passwd=password,
+        db=database,
         charset="utf8"
     )
     cur = conn.cursor()
-    # Grab all the states in my database starting with 'N'
-    cur.execute("SELECT * from states ORDER BY id")
+    # Grab all the states in the database starting with 'N'
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
     query_rows = cur.fetchall()
     for row in query_rows:
-        if row[1][0] == 'N':
-            print(row)
+        print(row)
     cur.close()
     conn.close()
-else:
-    print("Usage: ./1-filter_states.py <mysql username>\
- <mysql password> <database name>")
+
+if __name__ == "__main__":
+    if len(sys.argv) == 4:
+        username = sys.argv[1]
+        password = sys.argv[2]
+        database = sys.argv[3]
+        filter_states(username, password, database)
+    else:
+        print("Usage: ./1-filter_states.py <mysql username> <mysql password> <database name>")
