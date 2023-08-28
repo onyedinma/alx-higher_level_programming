@@ -8,11 +8,11 @@ if __name__ == "__main__":
                            passwd=sys.argv[2],
                            db=sys.argv[3],
                            charset="utf8")
-    curs = conn.cursor()
-    curs.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
-    query_res = cur.fetchall()
-    for row in query_res:
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    query_rows = cur.fetchall()
+    for row in query_rows:
         if row[1][0] == "N":
             print(row)
-    curs.close()
+    cur.close()
     conn.close()
