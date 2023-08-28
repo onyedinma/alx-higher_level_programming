@@ -2,8 +2,6 @@
 
 import MySQLdb
 import sys
-
-
 def main():
     """Select states from database."""
     conn = MySQLdb.connect(
@@ -21,7 +19,5 @@ def main():
         print(row)
     cur.close()
     conn.close()
-
-
 if __name__ == "__main__":
     main()
