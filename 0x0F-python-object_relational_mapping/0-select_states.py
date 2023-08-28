@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module to select states """
+""" A module to select states """
 if __name__ == "__main__":
     import MySQLdb
     import sys
@@ -10,8 +10,8 @@ if __name__ == "__main__":
                            charset="utf8")
     cur = lin.cursor()
     cur.execute("SELECT * FROM states ORDER BY id ASC")
-    query_row_results = cur.fetchall()
-    for row in query_row_results:
+    query_row = cur.fetchall()
+    for row in query_row:
         print(row)
     cur.close()
     lin.close()
