@@ -1,5 +1,4 @@
 # A module to select states
-
 import MySQLdb
 import sys
 def main():
