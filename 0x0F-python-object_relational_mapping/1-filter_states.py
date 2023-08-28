@@ -25,7 +25,8 @@ def filter_states(username, password, database):
         charset="utf8"
     )
     cur = conn.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' "
+                "ORDER BY id")
     query_rows = cur.fetchall()
     for row in query_rows:
         print(row)
@@ -40,4 +41,5 @@ if __name__ == "__main__":
         database = sys.argv[3]
         filter_states(username, password, database)
     else:
-        print("Usage: ./1-filter_states.py <mysql username> <mysql password> <database name>")
+        print("Usage: ./1-filter_states.py <mysql username> "
+              "<mysql password> <database name>")
