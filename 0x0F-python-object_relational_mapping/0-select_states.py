@@ -3,15 +3,15 @@
 if __name__ == "__main__":
     import MySQLdb
     import sys
-    conn = MySQLdb.connect(host="localhost",
+    con = MySQLdb.connect(host="localhost",
                            port=3306, user=sys.argv[1],
                            passwd=sys.argv[2],
                            db=sys.argv[3],
                            charset="utf8")
-    curs = connect.cursor()
-    curs.execute("SELECT * FROM states ORDER BY id ASC")
+    cur = connect.cursor()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
     query_results = cursor.fetchall()
     for row in query_results:
         print(row)
-    curs.close()
-    conn.close()
+    cur.close()
+    con.close()
