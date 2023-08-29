@@ -1,16 +1,25 @@
 #!/usr/bin/python3
-# Displays all values in the states table of the database hbtn_0e_0_usa
-# whose name matches that supplied as argument.
-# Safe from SQL injections.
-# Usage: ./3-my_safe_filter_states.py <mysql username> \
-#                                     <mysql password> \
-#                                     <database name> \
-#                                     <state name searched>
-import sys
-import MySQLdb
-
+""" A module to filter states by name using a safe query """
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT * FROM `states`")
-    [print(state) for state in c.fetchall() if state[1] == sys.argv[4]]
+    import MySQLdb
+    import sys
+    # connect to the database using the arguments
+    database = MySQLdb.connect(host="localhost",
+                               port=3306, user=sys.argv[1],
+                               passwd=sys.argv[2],
+                               db=sys.argv[3],
+                               charset="utf8")
+    # create a cursor object to execute queries
+    cursor = database.cursor()
+    # execute the query using a placeholder for the name argument
+    cursor.execute("SELECT * FROM states WHERE name=%s \
+            ORDER BY id ASC", (sys.argv[4],))
+    # fetch all the rows from the query result
+    states = cursor.fetchall()
+    # print each row that matches the name argument
+    for state in states:
+        if state[1] == sys.argv[4]:
+            print(state)
+    # close the cursor and the database
+    cursor.close()
+    database.close()
