@@ -1,21 +1,34 @@
 #!/usr/bin/python3
-# Adds the State object "Louisiana" to the database hbtn_0e_6_usa.
-# Usage: ./11-model_state_insert.py <mysql username> /
-#                                   <mysql password> /
-#                                   <database name>
+"""Script to print states via sqlalchemy
+"""
 import sys
+from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
 
-if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
+
+def add_state(engine, state_name):
+    """Adds a state with the given name to the states table"""
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    louisiana = State(name="Louisiana")
-    session.add(louisiana)
+    louis = State(name=state_name)
+    session.add(louis)
     session.commit()
-    print(louisiana.id)
+    result = session.query(State)\
+        .filter_by(name=state_name).first()
+    if result:
+        print(result.id)
+    else:
+        print("Not found")
+
+
+if __name__ == "__main__":
+    """ Usage: python3 script.py
+    <db_username> <db_password> <db_name> <state_name> """
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        sys.argv[1],
+        sys.argv[2],
+        sys.argv[3]),
+        pool_pre_ping=True)
+    state_name = sys.argv[4]
+    add_state(engine, state_name)
