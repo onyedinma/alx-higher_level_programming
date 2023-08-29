@@ -1,24 +1,28 @@
 #!/usr/bin/python3
-
-""" This code updates the name of the state/
-with id 2 to "New Mexico" in a MySQL database."""
-
+"""Update state name using SQLAlchemy."""
 import sys
-from sqlalchemy import create_engine, select
+from model_state import Base, State  # Import model classes
+from sqlalchemy import create_engine  # Import create_engine
+from sqlalchemy.orm import sessionmaker  # Import sessionmaker
 
-engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-    sys.argv[1],
-    sys.argv[2],
-    sys.argv[3]),
-    pool_pre_ping=True)
+if __name__ == "__main__":
+    # Create an SQLAlchemy engine to connect to the database
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
 
-# Get the first state with id 2
-query = select(State).where(State.id == 2)
+    # Create a session factory for interacting with the database
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-results = engine.execute(query)
+    # Query the State object with ID 2
+    result = session.query(State).filter_by(id=2).first()
 
-# Update the state name to "New Mexico"
-results.update({'name': 'New Mexico'})
+    if result:
+        # Update the name of the State object
+        result.name = "New Mexico"
 
-# Commit the changes to the database
-engine.commit()
+        # Commit the changes to the database
+        session.commit()
+        print("State name updated successfully.")
+    else:
+        print("State with ID 2 not found.")
