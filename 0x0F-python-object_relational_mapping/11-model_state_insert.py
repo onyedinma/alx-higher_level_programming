@@ -7,14 +7,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-def add_state(engine, state_name):
+def add_state(engine):
     """Adds a state with the given name to the states table"""
     Session = sessionmaker(bind=engine)
     session = Session()
-    louisiana = State(name=state_name)
-    session.add(louisiana)
+    state_name = State(name='Louisiana')
+    session.add(state_name)
     session.commit()
-    print(louisiana.id)
+    print(state_name.id)
 
 
 if __name__ == "__main__":
@@ -25,5 +25,4 @@ if __name__ == "__main__":
         sys.argv[2],
         sys.argv[3]),
         pool_pre_ping=True)
-    state_name = sys.argv[4]
-    add_state(engine, state_name)
+    add_state(engine)
