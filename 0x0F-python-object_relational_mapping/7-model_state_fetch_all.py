@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A script that Lists all State objects from the database hbtn_0e_6_usa
+"""Script to print states via sqlalchemy
 """
 import sys
 from model_state import Base, State
