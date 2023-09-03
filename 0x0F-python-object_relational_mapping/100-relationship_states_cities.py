@@ -6,20 +6,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sys import argv
 
-
-def print_states_and_cities():
+if __name__ == "__main__":
     engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
                            .format(argv[1], argv[2], argv[3]))
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    states = session.query(State).all()
-    for state in states:
-        print(f"{state.name}:")
-        for city in state.cities:
-            print(f"\t{city.name}")
-    session.close()
-
-
-if __name__ == "__main__":
-    print_states_and_cities()
+    state = State(name="California")
+    state.cities = [City(name="San Francisco")]
+    session.add(state)
+    session.commit()
