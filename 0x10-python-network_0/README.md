@@ -33,7 +33,7 @@ You have to use curl.
 **6-peak.py, 6-peak.txt:** Technical interview preparation:
 You are not allowed to google anything
 Whiteboard first
-Writing a function that finds a peak in a list of unsorted integers.
+Writing a function that finds a peak in a list of unsorted integers...
 Prototype: def find_peak(list_of_integers):
 You are not allowed to import any module.
 Your algorithm must have the lowest complexity (hint: you don’t need to go through all numbers to find a peak).
